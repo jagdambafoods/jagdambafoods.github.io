@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jagdamba Foods - Premium Handmade Indian Papads</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #ff9a56 0%, #ffb347 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #d2691e;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #d2691e;
+        }
+
+        .cart-btn {
+            background: #d2691e;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(210, 105, 30, 0.3);
+        }
+
+        .cart-btn:hover {
+            background: #b8651a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(210, 105, 30, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ff9a56 0%, #ffb347 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-50%) translateY(-50%); }
+            100% { transform: translateX(-50%) translateY(-60%); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-btn {
+            background: white;
+            color: #d2691e;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff9a56, #ffb347);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border-color: #ffb347;
+        }
+
+        .product-image {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #ff9a56, #ffb347);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 8px 25px rgba(255, 154, 86, 0.3);
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .product-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d2691e;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Quantity Selector */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quantity-label {
+            font-weight: bold;
+            color: #333;
+            margin-right: 0.5rem;
+        }
+
+        .quantity-input {
+            width: 80px;
+            padding: 0.5rem;
+            border: 2px solid #ffb347;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .quantity-input:focus {
+            outline: none;
+            border-color: #ff9a56;
+            box-shadow: 0 0 5px rgba(255, 154, 86, 0.3);
+        }
+
+        .quantity-btn {
+            background: #ffb347;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn:hover {
+            background: #ff9a56;
+            transform: scale(1.1);
+        }
+
+        .quantity-unit {
+            color: #666;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+
+        .add-to-cart {
+            background: linear-gradient(135deg, #ff9a56, #ffb347);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 154, 86, 0.3);
+        }
+
+        .add-to-cart:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 154, 86, 0.4);
+        }
+
+        .add-to-cart:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #fff5ee 0%, #ffeee6 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff9a56, #ffb347);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: #333;
+            color: white;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+        }
+
+        .contact-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #ffb347;
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Cart Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        #cart-items {
+            margin: 2rem 0;
+        }
+
+        .cart-item {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d2691e;
+            margin: 1rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quantity-selector {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .quantity-input {
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <div style="display: inline-flex; align-items: center; background: linear-gradient(135deg, #9AFF56, #7FE83F); padding: 8px 20px; border-radius: 25px; color: #FF4444; font-weight: bold; font-size: 1.8rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); box-shadow: 0 4px 15px rgba(127, 232, 63, 0.3);">
+                    JD's
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="cart-btn" onclick="openCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>JD's Premium Healthy Papads</h1>
+                <p>Traditional Maharashtrian papads made from nutritious grains - Nachni, Multigrain & Jowari</p>
+                <button class="cta-btn" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
+                    Shop Now
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Our Premium Collection</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="nachni.jpeg" alt="Nachni Papad" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                    </div>
+                    <h3>Nachni Papad (Ragi)</h3>
+                    <p>Nutritious finger millet (ragi/nachni) papad packed with calcium and iron. Perfect healthy snack with authentic Maharashtrian taste and crispy texture.</p>
+                    <div class="price">₹300/kg</div>
+                    
+                    <div class="quantity-selector">
+                        <span class="quantity-label">Quantity:</span>
+                        <button class="quantity-btn" onclick="decreaseQuantity('nachni')">-</button>
+                        <input type="number" id="nachni-qty" class="quantity-input" value="1" min="1" max="1000" onchange="validateQuantity('nachni')">
+                        <button class="quantity-btn" onclick="increaseQuantity('nachni')">+</button>
+                        <span class="quantity-unit">kg</span>
+                    </div>
+                    
+                    <button class="add-to-cart" onclick="addToCart('Nachni Papad (Ragi)', 300, 'nachni')">Add to Cart</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="multigrain.jpeg" alt="Multigrain Papad" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                    </div>
+                    <h3>Multigrain Papad</h3>
+                    <p>Power-packed blend of multiple grains including wheat, rice, and lentils. Rich in fiber and nutrients, perfect for health-conscious families.</p>
+                    <div class="price">₹300/kg</div>
+                    
+                    <div class="quantity-selector">
+                        <span class="quantity-label">Quantity:</span>
+                        <button class="quantity-btn" onclick="decreaseQuantity('multigrain')">-</button>
+                        <input type="number" id="multigrain-qty" class="quantity-input" value="1" min="1" max="1000" onchange="validateQuantity('multigrain')">
+                        <button class="quantity-btn" onclick="increaseQuantity('multigrain')">+</button>
+                        <span class="quantity-unit">kg</span>
+                    </div>
+                    
+                    <button class="add-to-cart" onclick="addToCart('Multigrain Papad', 300, 'multigrain')">Add to Cart</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="jowari.jpeg" alt="Jowari Papad" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                    </div>
+                    <h3>Jowari Papad (Sorghum)</h3>
+                    <p>Traditional jowar (sorghum) papad, gluten-free and naturally healthy. Light, crispy texture with authentic rural Maharashtra flavor.</p>
+                    <div class="price">₹300/kg</div>
+                    
+                    <div class="quantity-selector">
+                        <span class="quantity-label">Quantity:</span>
+                        <button class="quantity-btn" onclick="decreaseQuantity('jwari')">-</button>
+                        <input type="number" id="jowari-qty" class="quantity-input" value="1" min="1" max="1000" onchange="validateQuantity('jowari')">
+                        <button class="quantity-btn" onclick="increaseQuantity('jowari')">+</button>
+                        <span class="quantity-unit">kg</span>
+                    </div>
+                    
+                    <button class="add-to-cart" onclick="addToCart('Jowari Papad (Sorghum)', 300, 'jowari')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="about">
+        <div class="container">
+            <h2 class="section-title">Why Choose Papad Express?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👐</div>
+                    <h3>Handmade Quality</h3>
+                    <p>Each papad is carefully handmade using traditional methods passed down through generations.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3>Natural Ingredients</h3>
+                    <p>We use only premium quality lentils, rice, and spices with no artificial preservatives.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💯</div>
+                    <h3>100% Authentic</h3>
+                    <p>Traditional recipes and time-tested methods ensure authentic taste in every bite.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Get In Touch</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h4>📞 Phone</h4>
+                    <p>+91 9765033366</p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4>✉️ Email</h4>
+                    <p>jagdambafoodsnagpur@gmail.com</p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4>📍 Address</h4>
+                    <p>Jagdamba Foods, Balaji Nagar West, Manewada Road Nagpur, Maharashtra 440027</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 JD's Premium Papads. All rights reserved. Made with ❤️ for papad lovers everywhere.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cart-items">
+                <p>Your cart is empty</p>
+            </div>
+            <div class="cart-total" id="cart-total">Total: ₹0</div>
+            <button class="cta-btn" onclick="checkout()" style="background: #d2691e; margin-top: 1rem;">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let cartCount = 0;
+        let cartTotal = 0;
+
+        // Quantity control functions
+        function increaseQuantity(productId) {
+            const input = document.getElementById(productId + '-qty');
+            let currentValue = parseInt(input.value);
+            if (currentValue < 1000) {
+                input.value = currentValue + 1;
+            }
+        }
+
+        function decreaseQuantity(productId) {
+            const input = document.getElementById(productId + '-qty');
+            let currentValue = parseInt(input.value);
+            if (currentValue > 1) {
+                input.value = currentValue - 1;
+            }
+        }
+
+        function validateQuantity(productId) {
+            const input = document.getElementById(productId + '-qty');
+            let value = parseInt(input.value);
+            
+            if (isNaN(value) || value < 1) {
+                input.value = 1;
+            } else if (value > 1000) {
+                input.value = 1000;
+                alert('Maximum quantity allowed is 1000 kg per product.');
+            }
+        }
+
+        function addToCart(productName, pricePerKg, productId) {
+            const quantityInput = document.getElementById(productId + '-qty');
+            const quantity = parseInt(quantityInput.value);
+            
+            if (quantity < 1 || quantity > 1000) {
+                alert('Please select a valid quantity between 1 and 1000 kg.');
+                return;
+            }
+            
+            const totalPrice = pricePerKg * quantity;
+            
+            // Check if product already exists in cart
+            const existingItemIndex = cart.findIndex(item => item.name === productName);
+            
+            if (existingItemIndex > -1) {
+                // Update existing item
+                cart[existingItemIndex].quantity += quantity;
+                cart[existingItemIndex].totalPrice += totalPrice;
+            } else {
+                // Add new item
+                cart.push({
+                    name: productName,
+                    pricePerKg: pricePerKg,
+                    quantity: quantity,
+                    totalPrice: totalPrice
+                });
+            }
+            
+            cartCount += quantity;
+            cartTotal += totalPrice;
+            
+            document.getElementById('cart-count').textContent = cartCount;
+            
+            // Show added animation
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = `Added ${quantity}kg! ✓`;
+            button.style.background = '#28a745';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = 'linear-gradient(135deg, #ff9a56, #ffb347)';
+            }, 1500);
+            
+            // Reset quantity to 1
+            quantityInput.value = 1;
+            
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cartItemsDiv = document.getElementById('cart-items');
+            const cartTotalDiv = document.getElementById('cart-total');
+            
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p>Your cart is empty</p>';
+                cartTotalDiv.textContent = 'Total: ₹0';
+                return;
+            }
+            
+            let itemsHTML = '';
+            cart.forEach((item, index) => {
+                itemsHTML += `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong><br>
+                            <small>${item.quantity} kg × ₹${item.pricePerKg}/kg</small>
+                        </div>
+                        <div style="text-align: right;">
+                            <strong>₹${item.totalPrice}</strong>
+                            <button onclick="removeFromCart(${index})" style="margin-left: 10px; background: #ff4444; color: white; border: none; border-radius: 3px; padding: 2px 6px; cursor: pointer;">×</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cartItemsDiv.innerHTML = itemsHTML;
+            cartTotalDiv.textContent = `Total: ₹${cartTotal}`;
+        }
+
+        function removeFromCart(index) {
+            cartTotal -= cart[index].totalPrice;
+            cartCount -= cart[index].quantity;
+            cart.splice(index, 1);
+            document.getElementById('cart-count').textContent = cartCount;
+            updateCartDisplay();
+        }
+
+        function openCart() {
+            document.getElementById('cartModal').style.display = 'block';
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            let orderSummary = 'Thank you for your order!\n\nOrder Summary:\n';
+            cart.forEach(item => {
+                orderSummary += `- ${item.name}: ${item.quantity} kg (₹${item.totalPrice})\n`;
+            });
+            orderSummary += `\nTotal: ₹${cartTotal}\n\nWe'll contact you shortly to confirm your order and arrange delivery. You can pay cash on delivery or via UPI/bank transfer.`;
+            
+            alert(orderSummary);
+            
+            // Reset cart
+            cart = [];
+            cartCount = 0;
+            cartTotal = 0;
+            document.getElementById('cart-count').textContent = '0';
+            updateCartDisplay();
+            closeCart();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('cartModal');
+            if (event.target === modal) {
+                closeCart();
+            }
+        }
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Prevent form submission on Enter key in quantity inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+            quantityInputs.forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
